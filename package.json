@@ -1,7 +1,7 @@
 {
-  "name": "ts-module-template",
+  "name": "serverless-api-boilerplate",
   "version": "0.0.0",
-  "description": "A template for creating TypeScript npm modules",
+  "description": "Serverless REST api boilerplate code",
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
@@ -20,21 +20,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DaemonAlchemist/ts-module-template.git"
+    "url": "git+https://github.com/DaemonAlchemist/serverless-api-boilerplate.git"
   },
   "keywords": [
     "TypeScript",
+    "serverless",
     "npm"
   ],
   "author": "Andrew Wittrock",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DaemonAlchemist/ts-module-template/issues"
+    "url": "https://github.com/DaemonAlchemist/serverless-api-boilerplate/issues"
   },
-  "homepage": "https://github.com/DaemonAlchemist/ts-module-template#readme",
+  "homepage": "https://github.com/DaemonAlchemist/serverless-api-boilerplate#readme",
   "devDependencies": {
     "@types/jest": "^24.0.0",
-    "@types/redux": "^3.6.0",
     "dependency-check": "^3.3.0",
     "jest": "^24.1.0",
     "npm-check-updates": "^2.15.0",
