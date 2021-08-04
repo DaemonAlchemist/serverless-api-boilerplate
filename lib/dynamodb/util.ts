@@ -113,7 +113,7 @@ export const boilerplate = <T extends {id: string}>(TableName:string, label:stri
     atomic: (items:T[]) => ({table: TableName, label, items}),
 });
 
-interface ITableDef {
+export interface ITableDef {
     def:DynamoDB.CreateTableInput,
     name: string;
 }
