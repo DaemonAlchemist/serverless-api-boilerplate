@@ -6,8 +6,7 @@ export { CodedPromise } from "./lib/coded-promise";
 export { corsHeaders } from "./lib/config";
 export { dynamodb } from "./lib/dynamodb";
 export { catchErrors, error, getErrorMessage, isError } from "./lib/errors";
-export { updateMappings } from "./lib/update-mappings";
-export { getBody, getEnv, getEvent, getPath, getQuery } from "./lib/util";
+export { createMappings, getMappings, ModuleMapDef, updateMappings } from "./lib/update-mappings";
+export { addNewId, getBody, getEnv, getEvent, getPath, getQuery, makeHandler, pipeTo } from "./lib/util";
 export { withResponse } from "./lib/withResponse";
 export { del, get, patch, post, put } from "./lib/wrappers";
-
