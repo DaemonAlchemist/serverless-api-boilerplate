@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "test-watch": "jest --watch",
-    "build": "tsc",
+    "build": "tsc && cp ./lib/api.d.ts ./dist/lib/api.d.ts",
     "new-tag": "git push && git push origin --tags && npm publish",
     "major": "npm run build && npm version major && npm run new-tag",
     "minor": "npm run build && npm version minor && npm run new-tag",
