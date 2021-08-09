@@ -1,3 +1,5 @@
+import { Func, Tuple } from "ts-functional/dist/types";
+
 export declare type Maybe<T> = T | null;
 
 export declare interface IPath {
@@ -104,6 +106,10 @@ export declare type  PostFunction<T, R = T> = (path:Maybe<IPath>, body:Partial<T
 export declare type   PutFunction<T, R = T> = (path:Maybe<IPath>, body:Partial<T>,     env:NodeJS.ProcessEnv, event:IEvent<T>         ) => Promise<R>;
 export declare type PatchFunction<T, R = T> = (path:Maybe<IPath>, body:Partial<T>,     env:NodeJS.ProcessEnv, event:IEvent<Partial<T>>) => Promise<R>;
 export declare type DeleteFunction          = (path:Maybe<IPath>, body:undefined,      env:NodeJS.ProcessEnv, event:IEvent<null>      ) => Promise<null>;
+
+export declare type Handler<T> = Func<IEvent<T>, Promise<IApiGatewayResponse<string>>>;
+
+export declare type Validator<T> = Func<IEvent<T>, Promise<Tuple<boolean, string | undefined>>>;
 
 export declare interface IAMStatement {
     Effect: string;

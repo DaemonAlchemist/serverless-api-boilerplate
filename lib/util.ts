@@ -2,11 +2,7 @@ import { Guid } from "guid-typescript";
 import { arg, pipe, prop } from "ts-functional";
 import { IEvent, IPath, IQuery, Mapping } from "./api";
 
-export const getBody = <T>(...args:any[]) => {
-    console.log("getBody params:");
-    console.log(args);
-    return JSON.parse(arg<string>(1)(...args)) as T;
-}
+export const getBody = <T>(...args:any[]) => JSON.parse(arg<string>(1)(...args)) as T;
 export const getBodyParam = <T>(name:string):((...args:any[]) => T) => (...args:any[]):T => prop<any, any>(name)(getBody(...args));
 export const getPath = arg<IPath>(0);
 export const getPathParam = (name:string):((...args:any[]) => string) => (...args:any[]):string => prop<any, any>(name)(getPath(...args));
