@@ -1,6 +1,6 @@
 {
   "name": "serverless-api-boilerplate",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Serverless REST api boilerplate code",
   "main": "dist/index.js",
   "scripts": {
