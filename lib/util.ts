@@ -9,6 +9,10 @@ export const getPathParam = (name:string):((...args:any[]) => string) => (...arg
 export const getQuery = arg<IQuery>(1);
 export const getEnv = arg<NodeJS.ProcessEnv>(2);
 export const getEvent = <T>(...args:any[]) => arg<IEvent<T>>(3)(...args);
+export const getHeader = <T>(name:string):((...args:any[]) => string | string[]) => (...args:any[]):string | string[] =>
+    pipe(prop<IEvent<T>, "headers">("headers"), prop(name))(
+        getEvent(...args)
+    );
 
 const iamStatements = () => [{
     Effect: "Allow",
