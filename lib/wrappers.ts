@@ -1,6 +1,19 @@
 import { DeleteFunction, GetFunction, IApiGatewayResponse, IEvent, PatchFunction, PostFunction, PutFunction } from './api.d';
 import { catchErrors } from './errors';
 
+const parseNestedQuery = (query:any) => Object.keys(query)
+    .map((q:string):[string, string[]] => [q, q.replace(/\]/g, "").split("[")])
+    .reduce((all:any, [key, q]:[string, string[]]) => {
+        let curObj = all;
+        const lastParam:string = q.pop() as string;
+        q.forEach(p => {
+            if(typeof curObj[p] === 'undefined') {curObj[p] = {};}
+            curObj = curObj[p];
+        });
+        curObj[lastParam] = query[key].length > 1 ? query[key] : query[key][0];
+        return all;
+    }, {});
+
 export const get = <T, R = T>(f:GetFunction<T, R>) => async (event:IEvent<null>):Promise<IApiGatewayResponse<string>> => {
   const query = event.multiValueQueryStringParameters;
   console.log("Path:");
@@ -9,10 +22,7 @@ export const get = <T, R = T>(f:GetFunction<T, R>) => async (event:IEvent<null>)
   console.log(query);
   return catchErrors<R>(() => f(
     event.pathParameters,
-    !!query ? Object.keys(query).reduce((params:any, key:string) => ({
-      ...params,
-      [key]: query[key].length > 1 ? query[key] : query[key][0],
-    }), {}) : null,
+    !!query ? parseNestedQuery(query) : null,
     process.env,
     event
   ));
