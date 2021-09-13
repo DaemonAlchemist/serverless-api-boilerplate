@@ -7,7 +7,7 @@ export declare interface IPath {
 }
 
 export declare interface IQuery {
-    [key:string]: string | string[];
+    [key:string]: string | string[] | IQuery;
 }
 
 export declare interface IEvent<T> {
