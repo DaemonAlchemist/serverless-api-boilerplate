@@ -16,10 +16,6 @@ const parseNestedQuery = (query:any) => Object.keys(query)
 
 export const get = <T, R = T>(f:GetFunction<T, R>) => async (event:IEvent<null>):Promise<IApiGatewayResponse<string>> => {
   const query = event.multiValueQueryStringParameters;
-  console.log("Path:");
-  console.log(event.pathParameters);
-  console.log("Query:");
-  console.log(query);
   return catchErrors<R>(() => f(
     event.pathParameters,
     !!query ? parseNestedQuery(query) : null,
@@ -29,10 +25,6 @@ export const get = <T, R = T>(f:GetFunction<T, R>) => async (event:IEvent<null>)
 };
   
 export const post = <T, R = T>(f:PostFunction<T, R>) => async (event:IEvent<T>):Promise<IApiGatewayResponse<string>> => {
-  console.log("Path:");
-  console.log(event.pathParameters);
-  console.log("Body:");
-  console.log(event.body);
   return catchErrors<R>(() => f(
     event.pathParameters,
     event.body,
@@ -42,10 +34,6 @@ export const post = <T, R = T>(f:PostFunction<T, R>) => async (event:IEvent<T>):
 };
 
 export const put = <T, R = T>(f:PutFunction<T, R>) => async (event:IEvent<T>):Promise<IApiGatewayResponse<string>> => {
-  console.log("Path:");
-  console.log(event.pathParameters);
-  console.log("Body:");
-  console.log(event.body);
   return catchErrors<R>(() => f(
     event.pathParameters,
     event.body,
@@ -55,10 +43,6 @@ export const put = <T, R = T>(f:PutFunction<T, R>) => async (event:IEvent<T>):Pr
 };
   
 export const patch = <T, R = T>(f:PatchFunction<T, R>) => async (event:IEvent<Partial<T>>):Promise<IApiGatewayResponse<string>> => {
-  console.log("Path:");
-  console.log(event.pathParameters);
-  console.log("Body:");
-  console.log(event.body);
   return catchErrors<R>(async () => f(
     event.pathParameters,
     event.body,
@@ -68,8 +52,6 @@ export const patch = <T, R = T>(f:PatchFunction<T, R>) => async (event:IEvent<Pa
 };
 
 export const del = (f:DeleteFunction) => async (event:IEvent<null>):Promise<IApiGatewayResponse<string>> => {
-  console.log("Path:");
-  console.log(event.pathParameters);
   return catchErrors<null>(() => f(
     event.pathParameters,
     undefined,
